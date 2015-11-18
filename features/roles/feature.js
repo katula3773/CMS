@@ -6,9 +6,9 @@
 module.exports = {
         title: __('m_roles_backend_module_title'),
         author: 'Nguyen Van Thang',
-        version: '0.1.0',
+        version: '0.2.0',
         description: __('m_roles_backend_module_desc'),
-        permistions: [
+        permissions: [
             {
                 name: 'view',
                 title: __('m_roles_backend_module_rules_index')
@@ -28,15 +28,15 @@ module.exports = {
         ],
         backend_menu: {
             title: __('m_roles_backend_module_backend_menu_title'),
-            icon: "fa fa-group",
+            icon: "fa fa-user",
             menus: [
                 {
-                    rule: 'view',
+                    permission: 'view',
                     title: __('m_roles_backend_module_backend_menu_menus_index'),
                     link: '/'
                 },
                 {
-                    rule: 'create',
+                    permission: 'create',
                     title: __('m_roles_backend_module_backend_menu_menus_create'),
                     link: '/create'
                 }

@@ -7,7 +7,7 @@ module.exports =  {
     description: __('m_users_backend_description'),
     permissions: [
         {
-            name: 'index',
+            name: 'view',
             title: __('m_users_backend_rule_index')
         },
         {
@@ -32,7 +32,7 @@ module.exports =  {
         icon: "fa fa-user",
         menus: [
             {
-                permission: 'index',
+                permission: 'view',
                 title: __('m_users_backend_rule_index'),
                 link: '/'
             },

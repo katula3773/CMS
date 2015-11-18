@@ -10,8 +10,6 @@ let writeFileAsync = promise.promisify(require('fs').writeFile);
 let readdirAsync = promise.promisify(require('fs').readdir);
 let formidable = require('formidable');
 //global function
-let global_functions = require(__base+'/library/js_utilities/global');
-let acl = require(__base+'/library/js_utilities/acl');
 
 let _log = require('arrowjs').logger;
 
@@ -47,7 +45,7 @@ module.exports = function (controller,component,app) {
         req.session.search = session_search;
 
         // Config columns
-        let filter = global_functions.createFilter(req, res, route, '/admin/users', column, order, [
+        let filter = ArrowHelper.createFilter(req, res, route, '/admin/users', column, order, [
             {
                 column: "id",
                 width: '8%',

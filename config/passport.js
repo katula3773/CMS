@@ -9,7 +9,14 @@ module.exports = function (passport, application) {
             done(null, user.id);
         },
         deserializeUser: function (id, done) {
-            application.models.user.findById(id).then(function (user) {
+            application.models.user.find({
+                where : {
+                    id : id
+                },
+                include : {
+                    model:application.models.role
+                }
+            }).then(function (user) {
                 done(null,user);
             }).catch(function (err) {
                 done(err)
@@ -25,6 +32,7 @@ module.exports = function (passport, application) {
                 }).then(function (user) {
                     req.session.permissions = JSON.parse(user.role.rules);
                     res.locals.permissions = req.session.permissions;
+                    res.locals.user=user;
                     return next();
                 }).catch(function (err) {
                     _log.error('Error at : checkAuthenticate :',err);

@@ -8,7 +8,7 @@ module.exports = function (component,application) {
                 handler : comp.list,
                 name : "users-get",
                 authenticate : true,
-                permissions : "index"
+                permissions : "view"
             },
             delete : {
                 name : "users-delete",
@@ -26,7 +26,7 @@ module.exports = function (component,application) {
                 handler : comp.view,
                 name : "update-users-get",
                 authenticate : true,
-                permissions : "index"
+                permissions : "view"
             },
             post : {
                 handler : [comp.update,comp.view],
@@ -69,7 +69,7 @@ module.exports = function (component,application) {
                 handler : comp.list,
                 name : "users-page",
                 authenticate : true,
-                permissions : "index"
+                permissions : "view"
             }
         },
         "page/:page([0-9]+)/sort/:sort/(:order)?" : {
@@ -77,7 +77,7 @@ module.exports = function (component,application) {
                 handler : comp.list,
                 name : "users-page-sort",
                 authenticate : true,
-                permissions : "index"
+                permissions : "view"
             }
         },
         "create" : {

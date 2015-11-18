@@ -38,8 +38,8 @@
     </header>
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
-        {{ getBackendMenu(route,permissions) | async | safe }}
-        {#{% include 'main-sidebar.twig' %}#}
+        {#{{ getBackendMenu(route,permissions) | async | safe }}#}
+        {% include 'main-sidebar.twig' %}
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -47,8 +47,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Dashboard
-                <small>Control panel</small>
+                {{ title }}
+                {#<small>Control panel</small>#}
             </h1>
             {#<ol class="breadcrumb">#}
                 {#<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>#}

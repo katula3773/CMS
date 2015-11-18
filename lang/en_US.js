@@ -226,7 +226,7 @@ module.exports = {
     "m_roles_backend_new_status": "Status",
     "m_roles_backend_module_title": "Roles",
     "m_roles_backend_module_desc": "Roles management of website",
-    "m_roles_backend_module_rules_index": "All Roles",
+    "m_roles_backend_module_rules_index": "View All Roles",
     "m_roles_backend_module_rules_create": "Add New",
     "m_roles_backend_module_rules_update": "Update",
     "m_roles_backend_module_rules_delete": "Delete",
@@ -243,7 +243,7 @@ module.exports = {
     /* modules users */
     "m_users_backend_title": "Users",
     "m_users_backend_description": "Users management of website",
-    "m_users_backend_rule_index": "All Users",
+    "m_users_backend_rule_index": "View All Users",
     "m_users_backend_rule_create": "Create New User",
     "m_users_backend_rule_update": "Update User",
     "m_users_backend_rule_update_profile": "Update User's Profile",
