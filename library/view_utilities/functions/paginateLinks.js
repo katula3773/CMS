@@ -10,52 +10,73 @@ module.exports = {
      * @param totalPage - Total page
      * @param currentPage - Current page
      * @param itemLink - Link of page item
-     * @param className - Class of pagination use for CSS
+     * @param numberPagesOfPagination - Limit number of page display in pagination
      * @param previousButton - Content of previous button
      * @param nextButton - Content of next button
-     * @param numberPageOfPagination - Limit number of page display in pagination
+     * @param className - Class of pagination use for CSS
      * @returns HTML
      */
-    handler: function (totalPage, currentPage, itemLink, className, previousButton, nextButton, numberPageOfPagination) {
-        // Set default values
-        totalPage = _.isNumber(parseInt(totalPage)) ? parseInt(totalPage) : 1;
-        currentPage = _.isNumber(parseInt(currentPage)) ? parseInt(currentPage) : 1;
-        className = className || 'pagination';
+    handler: function (totalPage, currentPage, itemLink, numberPagesOfPagination, previousButton, nextButton, className) {
+        // Default total page = 1
+        totalPage = parseInt(totalPage);
+        totalPage = (_.isNumber(totalPage) && totalPage > 0) ? totalPage : 1;
+
+        // Default current page = 1
+        currentPage = parseInt(currentPage);
+        currentPage = (_.isNumber(currentPage) && currentPage > 0) ? currentPage : 1;
+
+        // Default number pages of pagination = 5
+        numberPagesOfPagination = parseInt(numberPagesOfPagination);
+        numberPagesOfPagination = (_.isNumber(numberPagesOfPagination) && numberPagesOfPagination > 1) ? numberPagesOfPagination : 5;
+
+        // Default item link = '?p={page}'
+        itemLink = itemLink.match(/\{page\}/) ? itemLink : '?p={page}';
+
+        // Default previous and next button
         previousButton = previousButton || '«';
         nextButton = nextButton || '»';
-        numberPageOfPagination = (_.isNumber(numberPageOfPagination) && parseInt(numberPageOfPagination) > 1) ? numberPageOfPagination : 3;
+
+        // Default pagination class name
+        className = className || 'pagination';
 
         let start, end;
+
         // Only display pagination when total page > 1
         if (totalPage > 1) {
-            if (numberPageOfPagination >= 3) {
-                if ((currentPage >= numberPageOfPagination) && (currentPage <= (totalPage - numberPageOfPagination + 1))) {
-                    start = currentPage - Math.floor(numberPageOfPagination/2);
-                    if (start < 1) {
-                        start = 1;
-                    }
+            if (totalPage > numberPagesOfPagination) {
+                if (numberPagesOfPagination >= 3) {
+                    if ((currentPage >= numberPagesOfPagination) && (currentPage <= (totalPage - numberPagesOfPagination + 1))) {
+                        start = currentPage - Math.floor(numberPagesOfPagination / 2);
+                        if (start < 1) {
+                            start = 1;
+                        }
 
-                    end = start + numberPageOfPagination -1;
-                    if (end > totalPage) {
+                        end = start + numberPagesOfPagination - 1;
+                        if (end > totalPage) {
+                            end = totalPage;
+                        }
+                    }
+                    else if (currentPage < numberPagesOfPagination) {
+                        start = 1;
+                        end = numberPagesOfPagination;
+                    }
+                    else if (currentPage > (totalPage - numberPagesOfPagination + 1)) {
+                        start = totalPage - numberPagesOfPagination + 1;
                         end = totalPage;
                     }
                 }
-                else if (currentPage < numberPageOfPagination) {
-                    start = 1;
-                    end = numberPageOfPagination;
-                }
-                else if (currentPage > (totalPage - numberPageOfPagination + 1)) {
-                    start = totalPage - numberPageOfPagination + 1;
-                    end = totalPage;
-                }
+            }
+            else if (totalPage < numberPagesOfPagination) {
+                start = 1;
+                end = totalPage;
             }
             else {
                 start = currentPage;
-                if ((currentPage + numberPageOfPagination) > totalPage) {
-                    start = totalPage - numberPageOfPagination + 1;
+                if ((currentPage + numberPagesOfPagination) > totalPage) {
+                    start = totalPage - numberPagesOfPagination + 1;
                 }
 
-                end = currentPage + numberPageOfPagination - 1;
+                end = currentPage + numberPagesOfPagination - 1;
                 if (end > totalPage) {
                     end = totalPage;
                 }
