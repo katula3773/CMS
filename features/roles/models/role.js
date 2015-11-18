@@ -2,6 +2,7 @@
 "use strict";
 
 module.exports = function (sequelize, DataTypes) {
+    //sadasdsa
     let Role = sequelize.define("role", {
         id : {
             type : DataTypes.INTEGER,
